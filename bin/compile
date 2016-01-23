@@ -20,7 +20,7 @@ ls
 echo "PWD"
 pwd
 
-cd $ext_dir/build
+cd $ext_dir
 
 # /app/php/bin/phpize
 # ./configure --enable-phalcon --with-php-config=$PHP_ROOT/bin/php-config
@@ -47,7 +47,7 @@ if [ ! -d "$ext_dir" ]; then
   echo "[ERROR] Failed to find curve25519-php directory $ext_dir"
   exit -1
 fi
-cd $ext_dir/build
+cd $ext_dir
 
 # /app/php/bin/phpize
 # ./configure --enable-phalcon --with-php-config=$PHP_ROOT/bin/php-config
