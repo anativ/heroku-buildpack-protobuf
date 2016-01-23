@@ -10,8 +10,16 @@ echo "[LOG] Downloading protobuf"
 git clone $dep_url -q
 if [ ! -d "$ext_dir" ]; then
   echo "[ERROR] Failed to find protobuf directory $ext_dir"
-  exit
+  exit -1
 fi
+echo "ls"
+echo ls
+echo "\n"
+echo "\n"
+echo "\n"
+
+
+
 echo "PWD:"
 echo pwd
 cd $ext_dir/build
@@ -39,7 +47,7 @@ echo "[LOG] Downloading curve25519-php"
 git clone $dep_url -q
 if [ ! -d "$ext_dir" ]; then
   echo "[ERROR] Failed to find curve25519-php directory $ext_dir"
-  exit
+  exit -1
 fi
 cd $ext_dir/build
 
