@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -x #echo on
 echo "MAY THE FORCE BE WITH US!"
 
 dep_url=git://github.com/allegro/php-protobuf.git
@@ -12,16 +13,13 @@ if [ ! -d "$ext_dir" ]; then
   echo "[ERROR] Failed to find protobuf directory $ext_dir"
   exit -1
 fi
+
 echo "ls"
-echo ls
-echo "\n"
-echo "\n"
-echo "\n"
+ls
 
+echo "PWD"
+pwd
 
-
-echo "PWD:"
-echo pwd
 cd $ext_dir/build
 
 # /app/php/bin/phpize
