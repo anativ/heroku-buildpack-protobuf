@@ -22,19 +22,36 @@ pwd
 
 cd $ext_dir
 
-# /app/php/bin/phpize
-# ./configure --enable-phalcon --with-php-config=$PHP_ROOT/bin/php-config
-# make
-# make install
-BUILD_DIR=$1
-ln -s $BUILD_DIR/.heroku /app/.heroku
-export PATH=/app/.heroku/php/bin:$PATH
-bash ./install
-cd
+/app/php/bin/phpize
+./configure
+make
+make install
+
+
+# BUILD_DIR=$1
+# ln -s $BUILD_DIR/.heroku /app/.heroku
+# export PATH=/app/.heroku/php/bin:$PATH
+# bash ./install
+# cd
 echo "important extension protobuf into php.ini"
 echo "extension=protobuf.so" >> /app/.heroku/php/etc/php/php.ini
 
 echo "--------------------"
+echo "--------------------"
+echo "--------------------"
+echo "--------------------"
+echo "--------------------"
+echo "--------------------"
+echo "--------------------"
+echo "--------------------"
+echo "--------------------"
+echo "--------------------"
+echo "--------------------"
+echo "--------------------"
+echo "--------------------"
+echo "--------------------"
+echo "--------------------"
+
 
 dep_url=git://github.com/mgp25/curve25519-php.git
 ext_dir=curve25519-php
@@ -49,15 +66,16 @@ if [ ! -d "$ext_dir" ]; then
 fi
 cd $ext_dir
 
-# /app/php/bin/phpize
-# ./configure --enable-phalcon --with-php-config=$PHP_ROOT/bin/php-config
-# make
-# make install
-BUILD_DIR=$1
-ln -s $BUILD_DIR/.heroku /app/.heroku
-export PATH=/app/.heroku/php/bin:$PATH
-bash ./install
-cd
+/app/php/bin/phpize
+./configure
+make
+make install
+
+# BUILD_DIR=$1
+# ln -s $BUILD_DIR/.heroku /app/.heroku
+# export PATH=/app/.heroku/php/bin:$PATH
+# bash ./install
+# cd
 echo "important extension curve25519-php into php.ini"
 echo "extension=curve25519.so" >> /app/.heroku/php/etc/php/php.ini
 
