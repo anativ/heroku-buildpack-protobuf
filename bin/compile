@@ -22,7 +22,7 @@ pwd
 
 cd $ext_dir
 
-/app/php/bin/phpize
+/app/.heroku/php/bin/phpize
 ./configure
 make
 make install
@@ -66,7 +66,7 @@ if [ ! -d "$ext_dir" ]; then
 fi
 cd $ext_dir
 
-/app/php/bin/phpize
+/app/.heroku/php/bin/phpize
 ./configure
 make
 make install
