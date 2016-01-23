@@ -1,55 +1,56 @@
 #!/usr/bin/env bash
+echo "MAY THE FORCE BE WITH US!"
 
-set -eo pipefail
+dep_url=git://github.com/allegro/php-protobuf.git
+ext_dir=php-protobuf
+echo "-----> Building protobuf..."
 
-function log-step() {
-    echo "-----> $@"
-}
+### Phalcon
+echo "[LOG] Downloading protobuf"
+git clone $dep_url -q
+if [ ! -d "$ext_dir" ]; then
+  echo "[ERROR] Failed to find protobuf directory $ext_dir"
+  exit
+fi
+cd $ext_dir/build
 
-function log() {
-    echo "$@" | sed -u 's/^/       /'
-}
-
-function die() {
-    echo " !     $@"
-    exit 1
-}
-
+# /app/php/bin/phpize
+# ./configure --enable-phalcon --with-php-config=$PHP_ROOT/bin/php-config
+# make
+# make install
 BUILD_DIR=$1
-CACHE_DIR=$2
+ln -s $BUILD_DIR/.heroku /app/.heroku
+export PATH=/app/.heroku/php/bin:$PATH
+bash ./install
+cd
+echo "important extension protobuf into php.ini"
+echo "extension=protobuf.so" >> /app/.heroku/php/etc/php/php.ini
 
-mkdir -p $CACHE_DIR
+echo "--------------------"
 
-if [ "${VENDOR_PROTOBUF+1}" == 1 ]; then
-    # install protobuf into slug if VENDOR_PROTOBUF is set
-    VENDOR_DIR=$BUILD_DIR/.heroku/vendor
-    log-step "installing protobuf into slug's /.heroku/vendor"
-else
-    # otherwise keep it in the cache dir
-    VENDOR_DIR=$CACHE_DIR/.heroku/vendor
-    log-step "installing protobuf"
+dep_url=git://github.com/mgp25/curve25519-php.git
+ext_dir=curve25519-php
+echo "-----> Building curve25519-php..."
+
+### Phalcon
+echo "[LOG] Downloading curve25519-php"
+git clone $dep_url -q
+if [ ! -d "$ext_dir" ]; then
+  echo "[ERROR] Failed to find curve25519-php directory $ext_dir"
+  exit
 fi
-mkdir -p $VENDOR_DIR
+cd $ext_dir/build
 
-mkdir -p /app/.heroku
+# /app/php/bin/phpize
+# ./configure --enable-phalcon --with-php-config=$PHP_ROOT/bin/php-config
+# make
+# make install
+BUILD_DIR=$1
+ln -s $BUILD_DIR/.heroku /app/.heroku
+export PATH=/app/.heroku/php/bin:$PATH
+bash ./install
+cd
+echo "important extension curve25519-php into php.ini"
+echo "extension=curve25519.so" >> /app/.heroku/php/etc/php/php.ini
 
-ln -sTf $VENDOR_DIR /app/.heroku/vendor
-
-# install protobuf
-CACHED_PROTOBUF_TARBALL="$CACHE_DIR/protobuf.tgz"
-if [ -z "$PROTOBUF_TARBALL_URL" ]; then
-    PROTOBUF_TARBALL_URL=https://s3-eu-west-1.amazonaws.com/assets.maxapp.co/php-protobuf-master.tgz
-fi
-
-log "downloading protobuf from $PROTOBUF_TARBALL_URL"
-if [ -f $CACHED_PROTOBUF_TARBALL ]; then
-    MD5=($(md5sum $CACHED_PROTOBUF_TARBALL))
-    MD5_HEADER=("-H" "If-None-Match: $MD5")
-else
-    MD5_HEADER=()
-fi
-
-curl -sfSo $CACHED_PROTOBUF_TARBALL \
-    "${MD5_HEADER[@]}" $PROTOBUF_TARBALL_URL
-
-tar xzf $CACHED_PROTOBUF_TARBALL -C $VENDOR_DIR
+echo "MAY THE FORCE BE WITH US!"
