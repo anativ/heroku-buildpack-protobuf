@@ -38,7 +38,7 @@ ln -sTf $VENDOR_DIR /app/.heroku/vendor
 # install protobuf
 CACHED_PROTOBUF_TARBALL="$CACHE_DIR/protobuf.tgz"
 if [ -z "$PROTOBUF_TARBALL_URL" ]; then
-    PROTOBUF_TARBALL_URL=https://s3-eu-west-1.amazonaws.com/assets.maxapp.co/php-protobuf-master.zip
+    PROTOBUF_TARBALL_URL=https://s3-eu-west-1.amazonaws.com/assets.maxapp.co/php-protobuf-master.tgz
 fi
 
 log "downloading protobuf from $PROTOBUF_TARBALL_URL"
