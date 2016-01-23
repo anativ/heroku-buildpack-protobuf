@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -x #echo on
+### set -x #echo on
 echo "MAY THE FORCE BE WITH US!"
 
 dep_url=git://github.com/allegro/php-protobuf.git
